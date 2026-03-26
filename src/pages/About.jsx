@@ -1,65 +1,149 @@
-import React from "react";
-import { 
-  FaUser, 
-  FaBullseye, 
-  FaLaptopCode, 
-  FaCode, 
-  FaChartLine, 
-  FaHeart 
-} from "react-icons/fa";
+import { useState } from "react";
+import {
+  User,
+  Target,
+  Code2,
+  Layers,
+  Rocket,
+  Sparkles,
+} from "lucide-react";
+import { motion } from "framer-motion";
 
-const aboutData = [
+const data = [
   {
-    title: "Who I Am",
-    desc: "I am a BCA graduate passionate about web development, always eager to learn and build new things.",
-    icon: <FaUser className="text-4xl text-red-500" />,
+    title: "Developer Mindset",
+    short: "Focused on building scalable and production-ready applications.",
+    full: "Focused on building scalable, maintainable and production-ready web applications with clean architecture, optimized performance and long-term usability in mind.",
+    icon: <User size={24} />,
   },
   {
-    title: "My Goal",
-    desc: "To become a skilled Full-Stack Developer and build impactful digital solutions.",
-    icon: <FaBullseye className="text-4xl text-green-500" />,
+    title: "Problem Solving",
+    short: "Approach development with logic and structure.",
+    full: "I approach development with logic, structured thinking and performance optimization, ensuring solutions are efficient, scalable and easy to maintain.",
+    icon: <Target size={24} />,
   },
   {
-    title: "What I Do",
-    desc: "I create responsive, fast and user-friendly websites with clean frontend and backend code.",
-    icon: <FaLaptopCode className="text-4xl text-blue-500" />,
+    title: "Frontend Expertise",
+    short: "Modern UI with React & Next.js.",
+    full: "Creating modern, responsive and accessible user interfaces using React, Next.js and clean component-based architecture with best UI/UX practices.",
+    icon: <Layers size={24} />,
   },
   {
-    title: "Skills",
-    desc: "HTML, CSS, JavaScript, React, Node, MongoDB & problem solving.",
-    icon: <FaCode className="text-4xl text-purple-500" />,
+    title: "Backend Systems",
+    short: "APIs and data handling with Node.js.",
+    full: "Building robust backend systems, REST APIs and managing data flow using Node.js, Express and databases with proper structure and security practices.",
+    icon: <Code2 size={24} />,
   },
   {
-    title: "Experience",
-    desc: "Worked on real-world projects and continuously learning.",
-    icon: <FaChartLine className="text-4xl text-yellow-400" />,
+    title: "Real Projects",
+    short: "Hands-on full-stack experience.",
+    full: "Built multiple full-stack applications with real-world functionality, focusing on performance, scalability and practical use cases across frontend and backend.",
+    icon: <Rocket size={24} />,
   },
   {
-    title: "What I Love",
-    desc: "Building clean UI, animations and user-focused products.",
-    icon: <FaHeart className="text-4xl text-pink-500" />,
+    title: "UI & Experience",
+    short: "Clean UI and smooth interactions.",
+    full: "Designing clean interfaces, smooth animations and user-focused experiences that enhance usability, engagement and overall product quality.",
+    icon: <Sparkles size={24} />,
   },
 ];
 
 export default function About() {
-  return (
-    <section id="about" className="px-10 py-20 bg-black text-white h-screen">
-      <h2 className="text-4xl font-bold text-center tracking-wide">About Me</h2>
-      <div className="w-32 h-1 bg-yellow-500 mx-auto mt-3 rounded"></div>
+  const [expanded, setExpanded] = useState(null);
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-16">
-        {aboutData.map((item, index) => (
-          <div
-            key={index}
-            className="relative p-8 bg-gray-900 rounded-2xl backdrop-blur-xl shadow-[0px_0px_25px_#2b2b2b] hover:scale-105 hover:shadow-[0px_0px_45px_#6a00ff] transition duration-300"
-          >
-            <div className="relative z-20 text-center">
-              {item.icon}
-              <h3 className="text-2xl font-semibold mt-4 mb-2">{item.title}</h3>
-              <p className="opacity-90 leading-relaxed">{item.desc}</p>
-            </div>
-          </div>
-        ))}
+  return (
+    <section
+      id="about"
+      className="
+        px-6 md:px-16 py-24
+        bg-gradient-to-b from-white via-indigo-50/50 to-purple-50/50
+        text-slate-800 relative 
+      "
+    >
+      {/* Heading */}
+      <div className="text-center max-w-2xl mx-auto">
+        <h2 className="text-4xl font-bold">
+          About{" "}
+          <span className="
+            bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500
+            bg-clip-text text-transparent
+          ">
+            My Work
+          </span>
+        </h2>
+
+        <p className="mt-4 text-slate-600">
+          Focused on building scalable systems, clean UI and real-world applications.
+        </p>
+      </div>
+
+      {/* GRID */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-16">
+        {data.map((item, i) => {
+          const isOpen = expanded === i;
+
+          return (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="
+                group relative p-6 rounded-2xl
+                bg-white/60 backdrop-blur-xl
+                border border-gray-200
+                shadow-sm
+                hover:-translate-y-2
+                transition duration-300
+              "
+            >
+              {/* Glow */}
+              <div className="
+                absolute inset-0 rounded-2xl opacity-0
+                group-hover:opacity-100
+                bg-gradient-to-r from-indigo-500/20 to-purple-500/20
+                blur-xl transition
+              "></div>
+
+              {/* Content */}
+              <div className="relative z-10">
+                <div className="mb-4 text-indigo-600">
+                  {item.icon}
+                </div>
+
+                <h3 className="text-lg font-semibold mb-2">
+                  {item.title}
+                </h3>
+
+                <p className="text-slate-600 text-sm leading-relaxed">
+                  {isOpen ? item.full : item.short}
+                </p>
+
+                {/* Button */}
+                <button
+                  onClick={() =>
+                    setExpanded(isOpen ? null : i)
+                  }
+                  className="
+                    mt-3 text-sm font-medium
+                    text-indigo-600 hover:text-indigo-800
+                    transition
+                  "
+                >
+                  {isOpen ? "Show Less" : "Read More"}
+                </button>
+              </div>
+
+              {/* Border highlight */}
+              <div className="
+                absolute inset-0 rounded-2xl border border-transparent
+                group-hover:border-indigo-400/40
+                transition
+              "></div>
+            </motion.div>
+          );
+        })}
       </div>
     </section>
   );

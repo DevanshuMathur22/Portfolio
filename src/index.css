@@ -1,1 +1,11 @@
 @import "tailwindcss";
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Navbar offset fix */
+section {
+  scroll-margin-top: 100px;
+}

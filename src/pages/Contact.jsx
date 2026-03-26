@@ -1,148 +1,163 @@
-import React, { useState } from "react";
-import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt, FaLinkedin, FaGithub, FaInstagram, FaTwitter, FaPaperPlane } from "react-icons/fa";
+import { useState } from "react";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Linkedin,
+  Github,
+  Instagram,
+  Send,
+} from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function Contact() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [subject, setSubject] = useState("");
-  const [message, setMessage] = useState("");
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
 
   return (
-    <section id="contact-me" className="px-10 py-20 bg-black text-white ">
-      <h2 className="text-4xl font-bold text-center tracking-wide">Contact Me</h2>
-      <div className="w-32 h-1 bg-yellow-500 mx-auto mt-3 rounded"></div>
+    <section
+      id="contact"
+      className="
+        px-6 md:px-16 py-24
+        bg-gradient-to-b from-white via-indigo-50/50 to-purple-50/50
+        text-slate-800 relative 
+      "
+    >
+      {/* Glow */}
+      <div className="absolute top-[-100px] left-[-100px] w-[300px] h-[300px] bg-indigo-300/30 blur-3xl rounded-full"></div>
+      <div className="absolute bottom-[-100px] right-[-100px] w-[300px] h-[300px] bg-purple-300/30 blur-3xl rounded-full"></div>
 
-      <div className="mt-16 max-w-6xl mx-auto flex flex-col md:flex-row gap-12">
-        
-        {/* LEFT PANEL - CONTACT INFO */}
-        <div className="flex-1 space-y-6">
+      {/* Heading */}
+      <div className="text-center max-w-2xl mx-auto">
+        <h2 className="text-4xl font-bold">
+          Get In{" "}
+          <span className="
+            bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500
+            bg-clip-text text-transparent
+          ">
+            Touch
+          </span>
+        </h2>
 
-          {/* Contact Card */}
-          <div className="p-6 bg-gray-900/60 rounded-2xl border border-gray-700 shadow-[0px_0px_25px_#1f1f1f] backdrop-blur-xl">
-            <div className="flex items-center gap-4 mb-4">
-              <FaEnvelope className="text-2xl text-yellow-500" />
-              <p className="text-lg font-light">devanshumathur9@gmail.com</p>
-            </div>
+        <p className="mt-4 text-slate-600">
+          Let’s discuss your ideas or build something amazing together.
+        </p>
+      </div>
 
-            <div className="flex items-center gap-4 mb-4">
-              <FaPhoneAlt className="text-2xl text-green-400" />
-              <p className="text-lg font-light">+91 9876544488</p>
-            </div>
-
-            <div className="flex items-center gap-4">
-              <FaMapMarkerAlt className="text-2xl text-red-500" />
-              <p className="text-lg font-light">Jaipur, Rajasthan</p>
-            </div>
-          </div>
-
-          {/* Map */}
-          <iframe
-            className="w-full h-52 rounded-2xl border border-gray-700 shadow-lg"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3559.548397164665!2d75.78727057519544!3d26.912433776664556!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396db3d7f3dfd4b7%3A0x7c9b32b1e5b9d9c!2sJaipur%2C%20Rajasthan!5e0!3m2!1sen!2sin!4v1732119828291!5m2!1sen!2sin"
-  
-            loading="lazy"
-            
-          ></iframe>
-
-          {/* Social Icons */}
-          <div className="flex gap-6 mt-4 text-3xl">
-            <a href="https://www.linkedin.com/in/devanshu-mathur-474879241/"
-              target="_blank"
-              className="text-blue-500 hover:scale-125 hover:-rotate-6 transition duration-300">
-              <FaLinkedin />
-            </a>
-            <a href="https://github.com/devanshumathur22"
-              target="_blank"
-              className="text-gray-300 hover:scale-125 hover:-rotate-6 transition duration-300">
-              <FaGithub />
-            </a>
-            <a href="https://twitter.com"
-              target="_blank"
-              className="text-sky-400 hover:scale-125 hover:-rotate-6 transition duration-300">
-              <FaTwitter />
-            </a>
-            <a href="https://instagram.com"
-              target="_blank"
-              className="text-pink-500 hover:scale-125 hover:-rotate-6 transition duration-300">
-              <FaInstagram />
-            </a>
-          </div>
-        </div>
-
-        {/* RIGHT PANEL - FORM */}
-        <div className="flex-1">
-          <form
-            className="flex flex-col gap-5"
-            onSubmit={async (e) => {
-              e.preventDefault();
-
-              const formData = { name, email, subject, message };
-
-              try {
-                const res = await fetch("http://localhost:5170/contact", {
-                  method: "POST",
-                  headers: { "Content-Type": "application/json" },
-                  body: JSON.stringify(formData),
-                });
-
-                if (res.ok) {
-                  alert("Message sent successfully 😊");
-                  setName("");
-                  setEmail("");
-                  setSubject("");
-                  setMessage("");
-                } else {
-                  alert("Failed to send ❌");
-                }
-              } catch (error) {
-                alert("Something went wrong!");
-              }
-            }}
+      {/* CONTACT CARDS */}
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 mt-16 max-w-5xl mx-auto">
+        {[
+          {
+            icon: <Mail size={22} />,
+            text: "devanshumathur9@gmail.com",
+          },
+          {
+            icon: <Phone size={22} />,
+            text: "+91 9876544488",
+          },
+          {
+            icon: <MapPin size={22} />,
+            text: "Jaipur, Rajasthan",
+          },
+        ].map((item, i) => (
+          <div
+            key={i}
+            className="
+              group p-5 rounded-2xl
+              bg-white/60 backdrop-blur-xl
+              border border-gray-200
+              shadow-sm text-center
+              hover:-translate-y-2 transition
+              relative
+            "
           >
-            <div className="flex flex-col md:flex-row gap-4">
-              <input
-                type="text"
-                placeholder="Your Name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="flex-1 p-3 rounded-xl bg-gray-900 border border-gray-700 text-white focus:ring-2 focus:ring-purple-500 outline-none transition"
-                required
-              />
-              <input
-                type="email"
-                placeholder="Your Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 p-3 rounded-xl bg-gray-900 border border-gray-700 text-white focus:ring-2 focus:ring-purple-500 outline-none transition"
-                required
-              />
+            {/* Glow */}
+            <div className="
+              absolute inset-0 rounded-2xl opacity-0
+              group-hover:opacity-100
+              bg-gradient-to-r from-indigo-500/20 to-purple-500/20
+              blur-xl transition
+            "></div>
+
+            <div className="relative z-10">
+              <div className="text-indigo-600 mb-2 flex justify-center">
+                {item.icon}
+              </div>
+
+              <p className="text-sm text-slate-700 font-medium">
+                {item.text}
+              </p>
             </div>
+          </div>
+        ))}
+      </div>
 
-            <input
-              type="text"
-              placeholder="Subject"
-              value={subject}
-              onChange={(e) => setSubject(e.target.value)}
-              className="p-3 rounded-xl bg-gray-900 border border-gray-700 text-white focus:ring-2 focus:ring-purple-500 outline-none transition"
-            />
+      {/* FORM */}
+      <motion.form
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: true }}
+        onSubmit={(e) => {
+          e.preventDefault();
+          alert("Message Sent 🚀");
+        }}
+        className="
+          mt-16 max-w-2xl mx-auto
+          p-8 rounded-2xl
+          bg-white/70 backdrop-blur-xl
+          border border-gray-200
+          shadow-lg
+          space-y-5
+        "
+      >
+        <input
+          type="text"
+          placeholder="Your Name"
+          className="w-full p-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-indigo-400 outline-none"
+        />
 
-            <textarea
-              placeholder="Your Message"
-              rows="6"
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              className="p-3 rounded-xl bg-gray-900 border border-gray-700 text-white focus:ring-2 focus:ring-purple-500 outline-none transition"
-              required
-            ></textarea>
+        <input
+          type="email"
+          placeholder="Your Email"
+          className="w-full p-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-indigo-400 outline-none"
+        />
 
-            <button
-              type="submit"
-              className="bg-gradient-to-r from-purple-600 to-pink-500 text-white text-lg font-semibold py-3 rounded-xl shadow-xl hover:scale-105 hover:shadow-[0_0_25px_#aa00ff] transition flex items-center justify-center gap-3"
-            >
-              <FaPaperPlane /> Send Message
-            </button>
-          </form>
-        </div>
+        <input
+          type="text"
+          placeholder="Subject"
+          className="w-full p-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-indigo-400 outline-none"
+        />
+
+        <textarea
+          rows="5"
+          placeholder="Your Message"
+          className="w-full p-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-indigo-400 outline-none"
+        ></textarea>
+
+        <button
+          type="submit"
+          className="
+            w-full py-3 rounded-xl font-medium text-white
+            bg-gradient-to-r from-indigo-500 to-purple-500
+            hover:scale-105 transition duration-300
+            flex items-center justify-center gap-2
+          "
+        >
+          <Send size={18} />
+          Send Message
+        </button>
+      </motion.form>
+
+      {/* SOCIAL */}
+      <div className="flex justify-center gap-6 mt-10 text-slate-600">
+        <Linkedin className="hover:text-indigo-500 cursor-pointer" />
+        <Github className="hover:text-black cursor-pointer" />
+        <Instagram className="hover:text-pink-500 cursor-pointer" />
       </div>
     </section>
   );

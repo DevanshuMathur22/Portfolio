@@ -1,93 +1,137 @@
-import React from "react";
-import { FaLaptopCode, FaServer, FaDatabase, FaLightbulb } from "react-icons/fa";
+import {
+  Code2,
+  Server,
+  Database,
+  Lightbulb,
+} from "lucide-react";
+import { motion } from "framer-motion";
 
-import frontens from "../assets/image/frontens.jpg";
-import backend from "../assets/backend.jpg";
-import database from "../assets/database.jpg";
-import problem from "../assets/problem.jpg";
+const data = [
+  {
+    title: "Frontend Development",
+    desc: "Building modern UI using React and component-based architecture with performance and responsiveness.",
+    highlight: "React & Modern UI",
+    icon: <Code2 size={22} />,
+  },
+  {
+    title: "Backend Development",
+    desc: "Developing scalable APIs and handling server-side logic with proper structure and performance.",
+    highlight: "Node.js & APIs",
+    icon: <Server size={22} />,
+  },
+  {
+    title: "Database Systems",
+    desc: "Managing structured data efficiently with optimized queries and scalable database design.",
+    highlight: "MongoDB & SQL",
+    icon: <Database size={22} />,
+  },
+  {
+    title: "Problem Solving",
+    desc: "Combining frontend, backend and logic to solve real-world problems effectively.",
+    highlight: "Logic & Architecture",
+    icon: <Lightbulb size={22} />,
+  },
+];
 
 export default function Fullstack() {
   return (
-    <section id="fullstack" className="px-10 py-20 bg-black text-white h-screen">
-      <h2 className="text-4xl font-bold text-center tracking-wide">Full Stack Developer</h2>
-      <div className="w-32 h-1 bg-yellow-500 mx-auto mt-3 rounded"></div>
+    <section
+      id="fullstack"
+      className="
+        px-6 md:px-16 py-24
+        bg-gradient-to-b from-white via-indigo-50/50 to-purple-50/50
+        text-slate-800 relative 
+      "
+    >
+      {/* Background Glow */}
+      <div className="absolute top-[-100px] left-[-100px] w-[300px] h-[300px] bg-indigo-300/30 blur-3xl rounded-full"></div>
+      <div className="absolute bottom-[-100px] right-[-100px] w-[300px] h-[300px] bg-purple-300/30 blur-3xl rounded-full"></div>
 
-      <p className="text-gray-300 mt-8 max-w-3xl mx-auto text-center leading-relaxed">
-        Hi, I’m Devanshu Mathur, a passionate full-stack developer focused on building responsive websites.
-        Skilled in frontend design, backend logic, and databases — I love turning ideas into real digital products.
-      </p>
+      {/* Heading */}
+      <div className="text-center max-w-2xl mx-auto">
+        <h2 className="text-4xl font-bold">
+          Full Stack{" "}
+          <span className="
+            bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500
+            bg-clip-text text-transparent
+          ">
+            Development
+          </span>
+        </h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mt-16">
-
-        {/* Frontend Development */}
-        <div className="relative p-8 bg-gray-900/60 rounded-2xl backdrop-blur-xl border border-gray-700 overflow-hidden shadow-[0_0_25px_#1f1f1f] hover:shadow-[0_0_45px_#6a00ff] hover:scale-105 transition duration-300">
-          <img
-            src={frontens}
-            alt="frontend"
-            className="absolute inset-0 w-full h-full object-cover opacity-25 pointer-events-none"
-          />
-          <div className="relative z-20">
-            <FaLaptopCode className="text-4xl text-purple-500 mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Frontend Development</h3>
-            <p className="text-gray-300">
-              I design modern UI using HTML, CSS, JavaScript & React for fast and smooth user experience.
-            </p>
-          </div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-        </div>
-
-        {/* Backend Development */}
-        <div className="relative p-8 bg-gray-900/60 rounded-2xl backdrop-blur-xl border border-gray-700 overflow-hidden shadow-[0_0_25px_#1f1f1f] hover:shadow-[0_0_45px_#6a00ff] hover:scale-105 transition duration-300">
-          <img
-            src={backend}
-            alt="backend"
-            className="absolute inset-0 w-full h-full object-cover opacity-25 pointer-events-none"
-          />
-          <div className="relative z-20">
-            <FaServer className="text-4xl text-blue-500 mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Backend Development</h3>
-            <p className="text-gray-300">
-              I create secure and scalable APIs using Node.js & Express for smooth functionality.
-            </p>
-          </div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-        </div>
-
-        {/* Database */}
-        <div className="relative p-8 bg-gray-900/60 rounded-2xl backdrop-blur-xl border border-gray-700 overflow-hidden shadow-[0_0_25px_#1f1f1f] hover:shadow-[0_0_45px_#6a00ff] hover:scale-105 transition duration-300">
-          <img
-            src={database}
-            alt="database"
-            className="absolute inset-0 w-full h-full object-cover opacity-25 pointer-events-none"
-          />
-          <div className="relative z-20">
-            <FaDatabase className="text-4xl text-cyan-400 mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Database Management</h3>
-            <p className="text-gray-300">
-              I work with MongoDB & SQL to manage structured data efficiently.
-            </p>
-          </div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-        </div>
-
-        {/* Problem Solving */}
-        <div className="relative p-8 bg-gray-900/60 rounded-2xl backdrop-blur-xl border border-gray-700 overflow-hidden shadow-[0_0_25px_#1f1f1f] hover:shadow-[0_0_45px_#6a00ff] hover:scale-105 transition duration-300">
-          <img
-            src={problem}
-            alt="problem"
-            className="absolute inset-0 w-full h-full object-cover opacity-25 pointer-events-none"
-          />
-          <div className="relative z-20">
-            <FaLightbulb className="text-4xl text-yellow-500 mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Problem Solving</h3>
-            <p className="text-gray-300">
-              I solve logical challenges by combining UI, backend, and data to create real solutions.
-            </p>
-          </div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-        </div>
-
+        <p className="mt-4 text-slate-600">
+          Building complete web applications with clean architecture, performance and scalability.
+        </p>
       </div>
+
+      {/* GRID */}
+      <motion.div
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+        variants={{
+          hidden: {},
+          show: { transition: { staggerChildren: 0.15 } },
+        }}
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mt-16"
+      >
+        {data.map((item, i) => (
+          <motion.div
+            key={i}
+            variants={{
+              hidden: { opacity: 0, y: 40 },
+              show: { opacity: 1, y: 0 },
+            }}
+            className="
+              group relative p-6 rounded-2xl
+              bg-white/60 backdrop-blur-xl
+              border border-gray-200
+              shadow-sm
+              hover:-translate-y-2
+              transition duration-300
+            "
+          >
+            {/* Glow */}
+            <div className="
+              absolute inset-0 rounded-2xl opacity-0
+              group-hover:opacity-100
+              bg-gradient-to-r from-indigo-500/20 to-purple-500/20
+              blur-xl transition
+            "></div>
+
+            {/* Content */}
+            <div className="relative z-10">
+              <div className="mb-4 text-indigo-600">
+                {item.icon}
+              </div>
+
+              <h3 className="text-lg font-semibold mb-2">
+                {item.title}
+              </h3>
+
+              {/* Highlight Text */}
+              <p className="
+                text-sm font-medium mb-2
+                bg-gradient-to-r from-indigo-500 to-purple-500
+                bg-clip-text text-transparent
+              ">
+                {item.highlight}
+              </p>
+
+              <p className="text-slate-600 text-sm leading-relaxed">
+                {item.desc}
+              </p>
+            </div>
+
+            {/* Border Glow */}
+            <div className="
+              absolute inset-0 rounded-2xl border border-transparent
+              group-hover:border-indigo-400/40
+              transition
+            "></div>
+          </motion.div>
+        ))}
+      </motion.div>
     </section>
   );
 }

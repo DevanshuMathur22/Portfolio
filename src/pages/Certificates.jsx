@@ -1,52 +1,124 @@
-import React from "react";
-import { FaShieldAlt, FaMobileAlt } from "react-icons/fa";
+import { ShieldCheck, Megaphone } from "lucide-react";
+import { motion } from "framer-motion";
+
+const data = [
+  {
+    title: "Cyber Security",
+    desc: "Completed a Cyber Security course covering network security, encryption, threat detection and protecting systems from vulnerabilities.",
+    icon: <ShieldCheck size={28} />,
+    link: "https://www.coursera.org/user/f69fdce36c92e70b981ff652fc7ca687",
+  },
+  {
+    title: "Digital Marketing",
+    desc: "Learned SEO, content strategy, paid ads and analytics with practical understanding of growing online visibility and audience targeting.",
+    icon: <Megaphone size={28} />,
+    link: "https://www.coursera.org/user/f69fdce36c92e70b981ff652fc7ca687",
+  },
+];
 
 export default function Certificates() {
   return (
-    <section id="certificates" className="px-10 py-48 bg-black text-white h-screen " >
-      <h2 className="text-4xl font-bold text-center tracking-wide">Certificates</h2>
-      <div className="w-32 h-1 bg-yellow-500 mx-auto mt-3 rounded"></div>
+    <section
+      id="certificates"
+      className="
+        px-6 md:px-16 py-24
+        bg-gradient-to-b from-white via-indigo-50/50 to-purple-50/50
+        text-slate-800 relative 
+      "
+    >
+      {/* Glow */}
+      <div className="absolute top-[-100px] left-[-100px] w-[300px] h-[300px] bg-indigo-300/30 blur-3xl rounded-full"></div>
+      <div className="absolute bottom-[-100px] right-[-100px] w-[300px] h-[300px] bg-purple-300/30 blur-3xl rounded-full"></div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-16">
-        
-        {/* Cyber Security Card */}
-        <div className="p-8 bg-gray-900/60 rounded-2xl border border-gray-700 backdrop-blur-xl shadow-[0px_0px_25px_#1f1f1f] hover:shadow-[0px_0px_40px_#6a00ff] hover:scale-105 transition duration-300">
-          <FaShieldAlt className="text-4xl text-yellow-500 mb-4" />
-          <h3 className="text-2xl font-semibold mb-2">Cyber Security</h3>
-          
-          <p className="text-gray-300 leading-relaxed">
-            Completed a Cyber Security course on Coursera. Learned about network security, 
-            encryption techniques, threat detection and how to protect digital assets from vulnerabilities.
-          </p>
+      {/* Heading */}
+      <div className="text-center max-w-2xl mx-auto">
+        <h2 className="text-4xl font-bold">
+          My{" "}
+          <span className="
+            bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500
+            bg-clip-text text-transparent
+          ">
+            Certifications
+          </span>
+        </h2>
 
-          <a
-            href="https://www.coursera.org/user/f69fdce36c92e70b981ff652fc7ca687"
-            target="_blank"
-            className="mt-6 inline-block bg-gradient-to-r from-purple-500 to-pink-500 text-white px-5 py-2 rounded-lg shadow hover:scale-110 transition"
+        <p className="mt-4 text-slate-600">
+          Verified skills and learning through professional certifications.
+        </p>
+      </div>
+
+      {/* LIST */}
+      <div className="mt-16 space-y-6 max-w-4xl mx-auto">
+        {data.map((item, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="
+              group flex flex-col md:flex-row items-start md:items-center
+              justify-between gap-6
+              p-6 rounded-2xl
+              bg-white/60 backdrop-blur-xl
+              border border-gray-200
+              shadow-sm
+              hover:-translate-y-2
+              transition duration-300
+              relative
+            "
           >
-            View Certificate
-          </a>
-        </div>
+            {/* Glow */}
+            <div className="
+              absolute inset-0 rounded-2xl opacity-0
+              group-hover:opacity-100
+              bg-gradient-to-r from-indigo-500/20 to-purple-500/20
+              blur-xl transition
+            "></div>
 
-        {/* Digital Marketing Card */}
-        <div className="p-8 bg-gray-900/60 rounded-2xl border border-gray-700 backdrop-blur-xl shadow-[0px_0px_25px_#1f1f1f] hover:shadow-[0px_0px_40px_#6a00ff] hover:scale-105 transition duration-300">
-          <FaMobileAlt className="text-4xl text-purple-500 mb-4" />
-          <h3 className="text-2xl font-semibold mb-2">Digital Marketing</h3>
-          
-          <p className="text-gray-300 leading-relaxed">
-            Learned SEO, content marketing, paid ads, campaign strategy and performance analytics. 
-            Gained practical skills to grow online brand visibility & audience targeting.
-          </p>
+            {/* LEFT */}
+            <div className="relative z-10 flex items-start gap-4">
+              <div className="text-indigo-600 mt-1">
+                {item.icon}
+              </div>
 
-          <a
-            href="https://www.coursera.org/user/f69fdce36c92e70b981ff652fc7ca687"
-            target="_blank"
-            className="mt-6 inline-block bg-gradient-to-r from-purple-500 to-pink-500 text-white px-5 py-2 rounded-lg shadow hover:scale-110 transition"
-          >
-            View Certificate
-          </a>
-        </div>
+              <div>
+                <h3 className="text-xl font-semibold">
+                  {item.title}
+                </h3>
 
+                <p className="text-slate-600 text-sm mt-1 max-w-lg">
+                  {item.desc}
+                </p>
+              </div>
+            </div>
+
+            {/* RIGHT BUTTON */}
+            <div className="relative z-10">
+              <a
+                href={item.link}
+                target="_blank"
+                rel="noreferrer"
+                className="
+                  px-5 py-2 rounded-lg text-sm font-medium
+                  bg-gradient-to-r from-indigo-500 to-purple-500
+                  text-white
+                  hover:scale-105
+                  transition duration-300
+                "
+              >
+                View Certificate
+              </a>
+            </div>
+
+            {/* Border Glow */}
+            <div className="
+              absolute inset-0 rounded-2xl border border-transparent
+              group-hover:border-indigo-400/40
+              transition
+            "></div>
+          </motion.div>
+        ))}
       </div>
     </section>
   );
