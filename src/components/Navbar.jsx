@@ -6,22 +6,24 @@ export default function Navbar() {
   const [active, setActive] = useState("#home");
 
   const navItems = [
-    { name: "Home", link: "#home" },
-    { name: "About", link: "#about" },
-    { name: "Work", link: "#work" },
-    { name: "Featured", link: "#featured-project" },
-    { name: "Fullstack", link: "#fullstack" },
-    { name: "Certificates", link: "#certificates" },
-    { name: "Skills", link: "#skills" },
-    { name: "Services", link: "#services" },
-    { name: "Contact", link: "#contact" },
-  ];
+  { name: "Home", link: "/#home" },
+  { name: "About", link: "/#about" },
+  { name: "Work", link: "/#work" },
+  { name: "Featured", link: "/#featured-project" },
+  { name: "Fullstack", link: "/#fullstack" },
+  { name: "Certificates", link: "/#certificates" },
+  { name: "Skills", link: "/#skills" },
+  { name: "Services", link: "/#services" },
+  { name: "Contact", link: "/#contact" },
+]
 
   // ✅ Scroll Spy (fixed)
   useEffect(() => {
     const handleScroll = () => {
       navItems.forEach((item) => {
-        const section = document.querySelector(item.link);
+        const section = document.querySelector(
+  item.link.replace("/", "")
+);
         if (!section) return;
 
         const rect = section.getBoundingClientRect();

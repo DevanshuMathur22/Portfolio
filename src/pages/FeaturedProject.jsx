@@ -1,4 +1,5 @@
 // FeaturedProject.jsx
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import projectImg from "../assets/image/petworld.jpg"; // change if needed
 
@@ -67,22 +68,35 @@ export default function FeaturedProject() {
           </div>
 
           {/* Buttons */}
-          <div className="flex gap-4 mt-6">
-            <a
-              href="https://pet-world-eta.vercel.app/"
-              target="_blank"
-              className="px-5 py-2 rounded-lg text-white bg-gradient-to-r from-indigo-500 to-purple-500 hover:scale-105 transition"
-            >
-              Live Demo
-            </a>
+         <div className="flex gap-4 mt-6">
+  <a
+    href="https://pet-world-eta.vercel.app/"
+    target="_blank"
+    className="
+      px-5 py-2 rounded-lg
+      text-white
+      bg-gradient-to-r
+      from-indigo-500
+      to-purple-500
+      hover:scale-105
+      transition
+    "
+  >
+    Live Demo
+  </a>
 
-            <a
-              href="#projects"
-              className="px-5 py-2 rounded-lg border border-gray-300 hover:bg-gray-100 transition"
-            >
-              View All
-            </a>
-          </div>
+ <Link
+  to="/project"
+  className="
+    px-5 py-2 rounded-lg
+    border border-gray-300
+    hover:bg-gray-100
+    transition
+  "
+>
+  View All
+</Link>
+</div>
         </motion.div>
 
       </div>
