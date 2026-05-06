@@ -49,14 +49,14 @@ export default function Footer() {
 
           <ul className="grid grid-cols-2 gap-x-6 gap-y-2 text-xs text-slate-600">
             {[
-              { name: "Home", link: "#home" },
-              { name: "About", link: "#about" },
-              { name: "Projects", link: "#projects" },
-              { name: "Skills", link: "#skills" },
-              { name: "Services", link: "#services" },
-              { name: "Certificates", link: "#certificates" },
-              { name: "Contact", link: "#contact" },
-              { name: "Featured", link: "#featured-project" },
+              { name: "Home", link: "/#home" },
+              { name: "About", link: "/#about" },
+            
+              { name: "Skills", link: "/#skills" },
+              { name: "Services", link: "/#services" },
+              { name: "Certificates", link: "/#certificates" },
+              { name: "Contact", link: "/#contact" },
+              { name: "Featured", link: "/#featured-project" },
             ].map((item, i) => (
               <li key={i}>
                 <a
