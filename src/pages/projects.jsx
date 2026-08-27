@@ -2,7 +2,6 @@ import { motion } from "framer-motion"
 
 import {
   ExternalLink,
-  Github,
   ArrowUpRight,
 } from "lucide-react"
 
@@ -17,7 +16,6 @@ const projects = [
     desc: "A modern healthcare website for a medical practice, featuring a clean design and easy navigation.",
     image: Drwebsite,
     live: "https://dr-vaibhav-psi.vercel.app/",
-    github: "#",
     tags: ["React", "Tailwind", "UI/UX"],
     color: "from-amber-500 to-orange-500",
   },
@@ -28,8 +26,7 @@ const projects = [
     desc: "Modern hospital dashboard with patient management, analytics and responsive admin panels.",
     image: hospital,
     live: "https://hospital-management-one-ruby.vercel.app/",
-    github: "#",
-    tags: ["React", "Dashboard", "Framer Motion,Next.js", "Tailwindcss"],
+    tags: ["React", "Dashboard", "Framer Motion", "Next.js"],
     color: "from-emerald-500 to-teal-500",
   },
 
@@ -39,7 +36,6 @@ const projects = [
     desc: "Apple inspired SaaS website with premium animations, glassmorphism and smooth interactions.",
     image: saas,
     live: "https://package-mover.vercel.app/",
-    github: "#",
     tags: ["Next.js", "Tailwind", "Animation"],
     color: "from-indigo-500 to-purple-500",
   },
@@ -264,6 +260,7 @@ export default function Project() {
                         }}
                         href={project.live}
                         target="_blank"
+                        rel="noreferrer"
                         className={`
                           flex items-center gap-2
                           rounded-full
@@ -278,29 +275,6 @@ export default function Project() {
                         Live Demo
                       </motion.a>
 
-                      <motion.a
-                        whileHover={{
-                          scale: 1.03,
-                        }}
-                        whileTap={{
-                          scale: 0.97,
-                        }}
-                        href={project.github}
-                        target="_blank"
-                        className="
-                          flex items-center gap-2
-                          rounded-full
-                          border border-black/10
-                          bg-white/70
-                          backdrop-blur-xl
-                          px-6 py-3
-                          text-sm font-medium
-                          text-slate-700
-                        "
-                      >
-                        <Github className="w-4 h-4" />
-                        GitHub
-                      </motion.a>
                     </div>
                   </div>
                 </div>

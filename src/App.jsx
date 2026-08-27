@@ -1,59 +1,18 @@
-import { Routes, Route } from "react-router-dom"
-
-import Navbar from "../src/components/Navbar"
-// import Cursor from "../src/components/Cursor"
-
-import Hero from "../src/components/Hero"
-
-import About from "../src/pages/About"
-import Certificates from "../src/pages/Certificates"
-import TimeLine from "../src/pages/Time-Line"
-import Fullstack from "../src/pages/Fullstack"
-import Work from "../src/pages/Work"
-import Services from "../src/pages/Service"
-import Contact from "../src/pages/Contact"
-import FeaturedProject from "./pages/FeaturedProject"
-import Stats from "./pages/Stats"
-import Project from "../src/pages/projects"
-
-import Footer from "../src/components/Footer"
-
-function HomePage() {
-  return (
-    <>
-      <main>
-        <Hero />
-        <About />
-        <Work />
-        <FeaturedProject />
-        <Stats />
-        <Fullstack />
-        <Certificates />
-        <TimeLine />
-        <Services />
-        <Contact />
-      </main>
-
-      <Footer />
-    </>
-  )
-}
+import { Route, Routes } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import Home from "./pages/Home";
+import Project from "./pages/projects";
 
 export default function App() {
   return (
-    <div className="bg-white text-slate-800">
-      {/* Cursor (optional) */}
-      {/* <Cursor /> */}
-
+    <div className="site-shell">
       <Navbar />
-
       <Routes>
-        {/* 🔥 HOME */}
-        <Route path="/" element={<HomePage />} />
-
-        {/* 🔥 PROJECT PAGE */}
+        <Route path="/" element={<Home />} />
         <Route path="/project" element={<Project />} />
       </Routes>
+      <Footer />
     </div>
-  )
+  );
 }
