@@ -2,10 +2,11 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import {
   ArrowUpRight,
+  CheckCircle2,
   Code2,
   Database,
   Github,
-  LayoutTemplate,
+  Layers3,
   Linkedin,
   Mail,
   MapPin,
@@ -13,79 +14,108 @@ import {
   Send,
   Server,
   Sparkles,
+  Zap,
 } from "lucide-react";
+
 import heroImage from "../assets/image/hero.jpg";
 import doctorProject from "../assets/image/dr.jpg";
 import hospitalProject from "../assets/image/hospital.jpg";
 import saasProject from "../assets/image/saas.jpg";
+import petProject from "../assets/image/petworld.jpg";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 18 },
+  show: { opacity: 1, y: 0 },
+};
+
+const stats = [
+  ["5+", "Projects"],
+  ["4", "Live demos"],
+  ["Full stack", "Frontend to backend"],
+];
+
+const stack = [
+  "React",
+  "Next.js",
+  "Tailwind",
+  "Node.js",
+  "Express",
+  "MongoDB",
+  "REST APIs",
+  "Framer Motion",
+];
+
+const services = [
+  {
+    icon: <Layers3 aria-hidden="true" />,
+    title: "Business websites",
+    text: "Modern websites for doctors, service brands, and local businesses.",
+  },
+  {
+    icon: <Code2 aria-hidden="true" />,
+    title: "Frontend UI",
+    text: "Responsive React interfaces with clean layout and smooth motion.",
+  },
+  {
+    icon: <Server aria-hidden="true" />,
+    title: "Web apps",
+    text: "Dashboards, forms, APIs, and practical full-stack product flows.",
+  },
+  {
+    icon: <Database aria-hidden="true" />,
+    title: "Data flow",
+    text: "Clean database structure, records, tables, and admin screens.",
+  },
+];
 
 const projects = [
   {
-    number: "01",
     title: "Dr. Vaibhav",
     type: "Healthcare website",
-    description:
-      "A clear, reassuring digital experience for a medical practice, designed to make information and next steps easy to find.",
+    text: "Clean doctor website with patient-focused sections and simple navigation.",
     image: doctorProject,
     url: "https://dr-vaibhav-psi.vercel.app/",
-    tags: ["React", "Tailwind CSS", "Responsive UI"],
+    tags: ["React", "Tailwind", "Responsive"],
   },
   {
-    number: "02",
     title: "Hospital Management",
-    type: "Operations dashboard",
-    description:
-      "A focused management interface for patients, operational data, and day-to-day hospital workflows.",
+    type: "Dashboard",
+    text: "Admin dashboard for patient records, operations, and hospital workflow.",
     image: hospitalProject,
     url: "https://hospital-management-one-ruby.vercel.app/",
-    tags: ["React", "Next.js", "Dashboard"],
+    tags: ["React", "Next.js", "Admin UI"],
   },
   {
-    number: "03",
     title: "Package Mover",
-    type: "SaaS landing page",
-    description:
-      "A polished product landing page that balances premium visual detail with a fast, straightforward user journey.",
+    type: "SaaS landing",
+    text: "Premium landing page with smooth motion and clear product sections.",
     image: saasProject,
     url: "https://package-mover.vercel.app/",
     tags: ["Next.js", "Motion", "Product UI"],
   },
-];
-
-const capabilities = [
   {
-    icon: <LayoutTemplate aria-hidden="true" />,
-    title: "Frontend systems",
-    text: "Responsive interfaces that feel clear, considered, and reliable on every screen.",
-  },
-  {
-    icon: <Server aria-hidden="true" />,
-    title: "Backend & APIs",
-    text: "Structured server-side logic and practical REST APIs built for real product needs.",
-  },
-  {
-    icon: <Database aria-hidden="true" />,
-    title: "Data foundations",
-    text: "Thoughtful data models and database flows that keep products dependable as they grow.",
-  },
-  {
-    icon: <Sparkles aria-hidden="true" />,
-    title: "Product polish",
-    text: "The small interaction and performance details that turn a useful app into a good experience.",
+    title: "PetWorld",
+    type: "Platform UI",
+    text: "Pet adoption interface with clean cards and responsive browsing.",
+    image: petProject,
+    url: "https://pet-world-eta.vercel.app/",
+    tags: ["React", "Routing", "UI/UX"],
   },
 ];
 
-const sectionMotion = {
-  hidden: { opacity: 0, y: 18 },
-  visible: { opacity: 1, y: 0 },
-};
+const process = [
+  ["01", "Plan", "Goal, pages, features, and content."],
+  ["02", "Design", "Layout, spacing, flow, and visual direction."],
+  ["03", "Build", "Frontend, backend, forms, APIs, and pages."],
+  ["04", "Polish", "Mobile, speed, animation, SEO, and deploy."],
+];
 
-function SectionTitle({ eyebrow, title, children, align = "left" }) {
+function SectionTitle({ eyebrow, title, text, center = false }) {
   return (
-    <div className={align === "center" ? "mx-auto max-w-2xl text-center" : "max-w-2xl"}>
+    <div className={center ? "home-v3-title center" : "home-v3-title"}>
       <p className="eyebrow">{eyebrow}</p>
-      <h2 className="section-title mt-4">{title}</h2>
-      {children && <p className="section-copy mt-5">{children}</p>}
+      <h2>{title}</h2>
+      {text && <p>{text}</p>}
     </div>
   );
 }
@@ -105,162 +135,257 @@ export default function Home() {
   }
 
   return (
-    <main>
-      <section id="home" className="hero-shell">
-        <div className="hero-orb hero-orb-one" />
-        <div className="hero-orb hero-orb-two" />
-        <div className="site-width hero-grid">
+    <main className="home-v3">
+      <section className="home-v3-hero">
+        <div className="home-v3-bg-grid" />
+        <div className="home-v3-orb orb-one" />
+        <div className="home-v3-orb orb-two" />
+
+        <div className="site-width home-v3-hero-grid">
           <motion.div
             initial="hidden"
-            animate="visible"
-            variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
+            animate="show"
+            variants={{ show: { transition: { staggerChildren: 0.08 } } }}
+            className="home-v3-hero-copy"
           >
-            <motion.p variants={sectionMotion} className="availability">
-              <span /> Available for selected freelance work
+            <motion.p variants={fadeUp} className="availability">
+              <span /> Available for freelance work
             </motion.p>
-            <motion.h1 variants={sectionMotion} className="hero-title">
-              Building web products that <em>work beautifully.</em>
+
+            <motion.h1 variants={fadeUp}>
+              Building clean digital products for modern businesses.
             </motion.h1>
-            <motion.p variants={sectionMotion} className="hero-copy">
-              I’m Devanshu Mathur, a full-stack developer who turns thoughtful ideas into fast, clear, and scalable web experiences.
+
+            <motion.p variants={fadeUp}>
+              I’m Devanshu Mathur, a full-stack developer creating websites, dashboards, and web apps with fast UI, clean code, and smooth user flow.
             </motion.p>
-            <motion.div variants={sectionMotion} className="hero-actions">
+
+            <motion.div variants={fadeUp} className="home-v3-actions">
               <a href="#work" className="button button-primary">
-                Explore my work <ArrowUpRight size={17} aria-hidden="true" />
+                View work <ArrowUpRight size={17} aria-hidden="true" />
               </a>
-              <a href="#contact" className="button button-secondary">Let’s talk</a>
+              <a href="#contact" className="button button-secondary">
+                Start project
+              </a>
+              <a href="/devanshu-mathur-resume.pdf" target="_blank" rel="noreferrer" className="button button-secondary">
+                Resume
+              </a>
             </motion.div>
-            <motion.div variants={sectionMotion} className="hero-proof">
-              <div><strong>5+</strong><span>Projects shipped</span></div>
-              <div><strong>Full stack</strong><span>From interface to API</span></div>
-              <div><strong>Jaipur, IN</strong><span>Working remotely</span></div>
+
+            <motion.div variants={fadeUp} className="home-v3-stats">
+              {stats.map(([number, label]) => (
+                <div key={label}>
+                  <strong>{number}</strong>
+                  <span>{label}</span>
+                </div>
+              ))}
             </motion.div>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96, y: 18 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.65, delay: 0.12 }}
-            className="portrait-wrap"
-          >
-            <div className="portrait-frame">
+          <motion.div className="home-v3-visual" initial={{ opacity: 0, y: 18, scale: 0.96 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ duration: 0.6 }}>
+            <div className="home-v3-photo">
               <img src={heroImage} alt="Devanshu Mathur" />
             </div>
-            <div className="floating-note note-top"><Code2 size={16} aria-hidden="true" /> React & Next.js</div>
-            <div className="floating-note note-bottom"><Sparkles size={16} aria-hidden="true" /> Detail-driven builds</div>
+
+            <div className="home-v3-float float-top">
+              <Zap size={16} aria-hidden="true" />
+              Fast UI
+            </div>
+
+            <div className="home-v3-float float-bottom">
+              <Sparkles size={16} aria-hidden="true" />
+              UI Polish
+            </div>
           </motion.div>
         </div>
       </section>
 
-      <section id="about" className="section site-width about-grid">
-        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={sectionMotion}>
-          <SectionTitle eyebrow="ABOUT ME" title="A practical developer with an eye for the experience.">
-            I enjoy the full journey: understanding a problem, shaping an interface, and building the systems that make it useful in the real world.
-          </SectionTitle>
+      <section className="home-v3-stack">
+        <div className="site-width">
+          {stack.map((item) => (
+            <span key={item}>{item}</span>
+          ))}
+        </div>
+      </section>
+
+      <section id="about" className="section site-width home-v3-about">
+        <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}>
+          <SectionTitle
+            eyebrow="ABOUT"
+            title="Clean design. Practical development."
+            text="I focus on simple interfaces, reliable structure, and final polish that makes a product feel complete."
+          />
         </motion.div>
-        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={sectionMotion} className="about-card">
-          <p>“The best products make complex things feel simple.”</p>
-          <div className="about-details">
-            <span>Based in Jaipur, Rajasthan</span>
-            <span>Open to collaborations</span>
-          </div>
+
+        <motion.div className="home-v3-about-card" initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}>
+          <CheckCircle2 size={22} aria-hidden="true" />
+          <h3>What I care about</h3>
+          <ul>
+            <li>Clear user flow</li>
+            <li>Reusable React components</li>
+            <li>Responsive mobile layout</li>
+            <li>Fast and clean final build</li>
+          </ul>
+          <a href="/about" className="text-link">
+            More about me <ArrowUpRight size={15} aria-hidden="true" />
+          </a>
         </motion.div>
       </section>
 
-      <section id="work" className="section work-section">
+      <section id="services" className="section home-v3-muted">
         <div className="site-width">
-          <SectionTitle eyebrow="SELECTED WORK" title="A few things I’ve brought to life.">
-            Product-focused projects that combine clean visual design with purposeful engineering.
-          </SectionTitle>
-          <div className="project-list">
-            {projects.map((project, index) => (
+          <SectionTitle
+            eyebrow="SERVICES"
+            title="What I can build."
+            text="Websites, dashboards, web apps, APIs, and final UI improvement."
+            center
+          />
+
+          <div className="home-v3-service-grid">
+            {services.map((service, index) => (
               <motion.article
-                key={project.title}
-                initial={{ opacity: 0, y: 24 }}
+                key={service.title}
+                className="home-v3-service-card"
+                initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.15 }}
-                transition={{ delay: index * 0.08 }}
-                className="project-card"
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.05 }}
               >
-                <a href={project.url} target="_blank" rel="noreferrer" className="project-image-link" aria-label={`Open ${project.title} live demo`}>
-                  <img src={project.image} alt={`${project.title} project preview`} className="project-image" />
-                  <span className="project-open"><ArrowUpRight size={22} aria-hidden="true" /></span>
-                </a>
-                <div className="project-content">
-                  <span className="project-number">{project.number}</span>
-                  <p className="project-type">{project.type}</p>
-                  <h3>{project.title}</h3>
-                  <p>{project.description}</p>
-                  <div className="tags">
-                    {project.tags.map((tag) => <span key={tag}>{tag}</span>)}
-                  </div>
-                  <a href={project.url} target="_blank" rel="noreferrer" className="text-link">View live project <ArrowUpRight size={16} aria-hidden="true" /></a>
-                </div>
+                <div className="capability-icon">{service.icon}</div>
+                <h3>{service.title}</h3>
+                <p>{service.text}</p>
               </motion.article>
             ))}
           </div>
-          <a href="/project" className="button button-secondary all-projects">View all project details <ArrowUpRight size={17} aria-hidden="true" /></a>
         </div>
       </section>
 
-      <section id="skills" className="section site-width">
-        <SectionTitle eyebrow="WHAT I DO" title="From first idea to dependable release.">
-          I use the right layer of the stack for the job, without losing sight of clarity, accessibility, and maintainability.
-        </SectionTitle>
-        <div className="capability-grid">
-          {capabilities.map((capability, index) => (
+      <section id="work" className="section site-width">
+        <SectionTitle
+          eyebrow="SELECTED WORK"
+          title="Projects with clean UI and useful flow."
+          text="A few builds focused on layout, responsiveness, interaction, and practical product structure."
+        />
+
+        <div className="home-v3-project-grid">
+          {projects.map((project, index) => (
             <motion.article
-              key={capability.title}
+              key={project.title}
+              className={index === 0 ? "home-v3-project-card featured" : "home-v3-project-card"}
               initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.08 }}
-              className="capability-card"
+              viewport={{ once: true, amount: 0.14 }}
+              transition={{ delay: index * 0.05 }}
             >
-              <div className="capability-icon">{capability.icon}</div>
-              <h3>{capability.title}</h3>
-              <p>{capability.text}</p>
+              <a href={project.url} target="_blank" rel="noreferrer" className="home-v3-project-image" aria-label={`Open ${project.title}`}>
+                <img src={project.image} alt={`${project.title} preview`} />
+                <span><ArrowUpRight size={20} aria-hidden="true" /></span>
+              </a>
+
+              <div className="home-v3-project-copy">
+                <p className="project-type">{project.type}</p>
+                <h3>{project.title}</h3>
+                <p>{project.text}</p>
+                <div className="tags">
+                  {project.tags.map((tag) => (
+                    <span key={tag}>{tag}</span>
+                  ))}
+                </div>
+                <a href={project.url} target="_blank" rel="noreferrer" className="text-link">
+                  Live demo <ArrowUpRight size={15} aria-hidden="true" />
+                </a>
+              </div>
             </motion.article>
           ))}
         </div>
-        <div className="toolbelt" aria-label="Technology stack">
-          {['React', 'Next.js', 'Node.js', 'Express', 'MongoDB', 'Tailwind CSS', 'Framer Motion', 'Figma'].map((tool) => <span key={tool}>{tool}</span>)}
+
+        <a href="/work" className="button button-secondary home-v3-more">
+          View full work <ArrowUpRight size={17} aria-hidden="true" />
+        </a>
+      </section>
+
+      <section className="section home-v3-process-section">
+        <div className="site-width">
+          <SectionTitle
+            eyebrow="PROCESS"
+            title="Simple process. Clean delivery."
+            text="Clear steps from first idea to launch-ready product."
+            center
+          />
+
+          <div className="home-v3-process-grid">
+            {process.map(([number, title, text]) => (
+              <article className="home-v3-process-card" key={number}>
+                <span>{number}</span>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
-      <section id="contact" className="section contact-section">
-        <div className="site-width contact-layout">
+      <section className="section site-width home-v3-hire">
+        <div className="home-v3-hire-card">
           <div>
-            <SectionTitle eyebrow="GET IN TOUCH" title="Have a project in mind? Let’s make it useful.">
-              Tell me a little about what you’re building. I’ll be glad to hear about it.
-            </SectionTitle>
+            <p className="eyebrow">HIRE ME</p>
+            <h2>Need a premium website or dashboard?</h2>
+            <p>I can help with a fresh build, redesign, landing page, business website, or full-stack dashboard.</p>
+          </div>
+
+          <div className="home-v3-hire-list">
+            <span>Website</span>
+            <span>Dashboard</span>
+            <span>Web App</span>
+            <span>UI Revamp</span>
+          </div>
+
+          <div className="home-v3-actions">
+            <a href="#contact" className="button button-primary">Start project</a>
+            <a href="/work" className="button button-secondary">See work</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" className="section home-v3-contact">
+        <div className="site-width home-v3-contact-grid">
+          <div>
+            <SectionTitle
+              eyebrow="CONTACT"
+              title="Have an idea? Let’s build it."
+              text="Send a short message about your website, dashboard, or app."
+            />
+
             <div className="contact-links">
               <a href="mailto:devanshumathur9@gmail.com"><Mail size={18} aria-hidden="true" /> devanshumathur9@gmail.com</a>
               <a href="tel:+919876544488"><Phone size={18} aria-hidden="true" /> +91 9876544488</a>
               <p><MapPin size={18} aria-hidden="true" /> Jaipur, Rajasthan, India</p>
             </div>
+
             <div className="social-links">
-              <a href="https://github.com/devanshumathur22" target="_blank" rel="noreferrer" aria-label="Devanshu on GitHub"><Github size={20} /></a>
-              <a href="https://www.linkedin.com/in/devanshu-mathur-474879241" target="_blank" rel="noreferrer" aria-label="Devanshu on LinkedIn"><Linkedin size={20} /></a>
+              <a href="https://github.com/devanshumathur22" target="_blank" rel="noreferrer" aria-label="GitHub"><Github size={20} /></a>
+              <a href="https://www.linkedin.com/in/devanshu-mathur-474879241" target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={20} /></a>
             </div>
           </div>
 
-          <form className="contact-form" onSubmit={sendEmail}>
+          <motion.form className="contact-form home-v3-form" onSubmit={sendEmail} initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <label>
               Your name
-              <input name="name" value={form.name} onChange={updateForm} autoComplete="name" placeholder="What should I call you?" required />
+              <input name="name" value={form.name} onChange={updateForm} autoComplete="name" placeholder="Your name" required />
             </label>
             <label>
               Email address
               <input type="email" name="email" value={form.email} onChange={updateForm} autoComplete="email" placeholder="you@company.com" required />
             </label>
             <label>
-              Project details
-              <textarea name="message" value={form.message} onChange={updateForm} placeholder="A short note about your idea, goals, or timeline." rows="5" required />
+              Message
+              <textarea name="message" value={form.message} onChange={updateForm} placeholder="Tell me what you need." rows="5" required />
             </label>
-            <button className="button button-primary" type="submit">Start an email <Send size={16} aria-hidden="true" /></button>
-            <p className="form-hint">This opens your email app with the message ready to send.</p>
-          </form>
+            <button className="button button-primary" type="submit">
+              Send message <Send size={16} aria-hidden="true" />
+            </button>
+            <p className="form-hint">This opens your email app with the message ready.</p>
+          </motion.form>
         </div>
       </section>
     </main>

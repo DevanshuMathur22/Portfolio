@@ -1,24 +1,36 @@
-import { ArrowUpRight, Github, Linkedin } from "lucide-react";
+import { Link } from "react-router-dom";
+import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
+
+const year = new Date().getFullYear();
 
 export default function Footer() {
   return (
     <footer className="footer">
       <div className="site-width footer-inner">
         <div>
-          <a className="brand" href="/">DM<span>.</span></a>
-          <p>Full-stack developer creating useful, polished web experiences.</p>
+          <Link className="brand" to="/">DM<span>.</span></Link>
+          <p>Clean websites, dashboards, and full-stack web apps.</p>
         </div>
+
         <div className="footer-links">
-          <a href="/about">About</a>
-          <a href="/work">Work</a>
-          <a href="/services">Services</a>
-          <a href="/contact">Contact</a>
-          <a href="https://github.com/devanshumathur22" target="_blank" rel="noreferrer">GitHub <Github size={16} aria-hidden="true" /></a>
-          <a href="https://www.linkedin.com/in/devanshu-mathur-474879241" target="_blank" rel="noreferrer">LinkedIn <Linkedin size={16} aria-hidden="true" /></a>
-          <a href="mailto:devanshumathur9@gmail.com">Email <ArrowUpRight size={16} aria-hidden="true" /></a>
+          <Link to="/work">Work</Link>
+          <Link to="/services">Services</Link>
+          <Link to="/contact">Contact</Link>
+          <a href="mailto:devanshumathur9@gmail.com">
+            Email <Mail size={14} aria-hidden="true" />
+          </a>
+          <a href="https://github.com/devanshumathur22" target="_blank" rel="noreferrer">
+            GitHub <Github size={14} aria-hidden="true" />
+          </a>
+          <a href="https://www.linkedin.com/in/devanshu-mathur-474879241" target="_blank" rel="noreferrer">
+            LinkedIn <Linkedin size={14} aria-hidden="true" />
+          </a>
+          <a href="/devanshu-mathur-resume.pdf" target="_blank" rel="noreferrer">
+            Resume <ArrowUpRight size={14} aria-hidden="true" />
+          </a>
         </div>
       </div>
-      <div className="site-width footer-bottom">© {new Date().getFullYear()} Devanshu Mathur. Built with care.</div>
+      <div className="site-width footer-bottom">© {year} Devanshu Mathur. Built with React.</div>
     </footer>
   );
 }
